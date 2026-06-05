@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目代码注释"
+  short_description: "按流程化中文注释规范为项目代码补充文件、函数、结构体、接口和关键流程注释。"
+  default_prompt: "请使用这个技能为当前项目补充或优化流程化中文代码注释，保持业务逻辑不变。"
