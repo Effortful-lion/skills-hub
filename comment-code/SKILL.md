@@ -34,6 +34,12 @@ Add concise Chinese comments that make code easier to follow: what the file owns
 - Avoid decorative comments, vague praise, duplicated wording, and comments that conflict with code.
 - Follow the file's existing placement style. For Go files, use `//` comments and keep the file comment before `package`.
 
+### SQL and Config Files
+
+- For SQL files, use block comments such as `/* ... */` for the file-level overview, and use line comments such as `--` for field-level notes on complex table structures when needed.
+- For YAML, TOML, INI, and similar config files, use the comment syntax supported by the file format to add a brief file-level description and concise notes for individual settings, including nested or multi-level settings.
+- When the configuration meaning is tightly coupled to the project and cannot be confirmed from surrounding context, related code, or existing conventions, do not invent business meaning; keep the comment generic or skip it.
+
 ## File Header Comments
 
 Every edited non-generated code file must have a concise Chinese file-level comment at the top. For files with a `package` declaration, place it before `package` and leave one blank line after the file comment.
