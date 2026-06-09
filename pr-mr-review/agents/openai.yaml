@@ -1,4 +1,0 @@
-interface:
-  display_name: "PR / MR 审查修复"
-  short_description: "审查 diff、PR、MR 并循环修复问题"
-  default_prompt: "使用 $pr-mr-review 审查当前 diff、GitHub PR 或 GitLab MR，先列出问题和修复方案，确认后再修复并复审。"
