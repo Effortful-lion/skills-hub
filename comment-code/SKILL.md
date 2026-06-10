@@ -16,7 +16,14 @@ Add concise Chinese comments that make code easier to follow: what the file owns
 3. Add comments in layers: file header, types/messages/interfaces, fields/methods, functions, then key in-function flow steps.
 4. Preserve business logic exactly. Do not refactor, rename, reorder, simplify, or alter generated code.
 5. Translate or rewrite touched English/other-language comments into concise Chinese when still accurate; replace stale comments with accurate ones.
-6. Run the project formatter for edited files when appropriate, then review the diff to ensure only comments and harmless formatting changed.
+6. Do not run project code, tests, builds, services, scripts, generators, or formatters while performing comment-only work.
+7. Review the diff to ensure changes are limited to comments only. Revert any accidental non-comment edits before finishing.
+
+## Hard Boundaries
+
+- Only add, improve, or translate comments. Do not change executable code, declarations, imports, formatting-only whitespace, generated output, configuration values, tests, scripts, or project behavior.
+- Do not run the project, invoke test/build/lint/format commands, start services, execute scripts, regenerate files, or call tools that modify code automatically.
+- Use reading and diff inspection to verify the work. If validation would require execution, state that it was intentionally skipped because this skill is comment-only.
 
 ## Generated Code
 
@@ -152,4 +159,5 @@ Before finishing, verify:
 - In-function comments show the main request, config, registration, data-processing, persistence, or messaging flow.
 - Existing non-Chinese comments were translated or rewritten when touched.
 - No business logic changed.
-- Formatter output is acceptable and the final diff is limited to comments and harmless formatting.
+- No code, formatting-only whitespace, generated output, config value, test, script, or behavior change was introduced.
+- No project code, tests, builds, services, scripts, generators, linters, or formatters were run.

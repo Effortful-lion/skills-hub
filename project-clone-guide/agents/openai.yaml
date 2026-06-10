@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目仿写引导"
+  short_description: "通读陌生项目并按服务和模块生成可仿写的业务与接口文档"
+  default_prompt: "Use $project-clone-guide to analyze this project and generate service, module, and API documentation for reimplementation."
