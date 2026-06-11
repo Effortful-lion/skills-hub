@@ -92,6 +92,19 @@ Each field comment should state:
 - 流向：来自请求、配置、数据库、消息、下游接口，还是返回给调用方。
 - 约束：必填、默认值、单位、枚举、范围、兼容含义或为空语义。
 
+For inline field comments, prefer aligning `//` within the same struct/message block when the language and existing style allow it. Calculate the offset from the longest field declaration in that block, then place `//` at the same column to improve scanning. Keep the alignment local to the current block; do not reformat unrelated code or generated fields.
+
+Example:
+
+```go
+type LoginRequest struct {
+	UserID      string `json:"user_id"`      // 用户标识，来自登录请求并用于查询账号。
+	Password    string `json:"password"`     // 登录密码，来自请求体并用于认证校验。
+	RememberMe  bool   `json:"remember_me"`  // 是否保持登录态，未传时按默认会话策略处理。
+	RedirectURL string `json:"redirect_url"` // 登录成功后的跳转地址，返回给前端继续导航。
+}
+```
+
 Skip fields only when they belong to generated or unmodifiable code.
 
 ## Function Comments
@@ -156,6 +169,7 @@ Before finishing, verify:
 - Each edited non-generated file has a concrete, concise Chinese file header in the correct location.
 - Generated or unmodifiable files/blocks were not changed.
 - Every human-owned function, method, struct, type, interface, message, request/response object, DTO/model/entity, enum, field, and interface/message method has a useful Chinese comment.
+- Inline field comments in the same struct/message block are left-aligned when practical, without changing unrelated formatting.
 - In-function comments show the main request, config, registration, data-processing, persistence, or messaging flow.
 - Existing non-Chinese comments were translated or rewritten when touched.
 - No business logic changed.
