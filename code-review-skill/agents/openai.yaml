@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目代码审查"
+  short_description: "项目代码审查：面向国内团队的 Go 后端与前端代码评审实践指南"
+  default_prompt: "Use $code-review-skill（项目代码审查） to review this Go backend and frontend change with actionable Chinese feedback."

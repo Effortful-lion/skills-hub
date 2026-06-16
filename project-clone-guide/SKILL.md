@@ -1,6 +1,6 @@
 ---
 name: project-clone-guide
-description: Analyze unfamiliar codebases and generate Chinese service/module/API documentation for project imitation and reimplementation. Use when Codex needs to read a project, identify services, functional modules, routes, handlers, business flows, request/response schemas, status codes, and key technical design points, then output Markdown documents organized by service and module. Trigger on requests such as 项目仿写, 通读项目, 生成模块文档, 生成接口文档, 梳理服务功能, or 分析陌生项目.
+description: Use when analyzing unfamiliar codebases for project imitation, Chinese service/module/API documentation, or engineering reimplementation guidance, especially for requests such as 项目仿写, 通读项目, 生成模块文档, 生成接口文档, 梳理服务功能, or 分析陌生项目.
 ---
 
 # Project Clone Guide
@@ -15,10 +15,11 @@ Write output in Chinese unless the user asks for another language. Generate docu
 
 Start by building a project map before writing documentation:
 
-1. Identify language, framework, build files, service entrypoints, configuration files, route registration, middleware, response helpers, error/status code definitions, models, repositories, and external integrations.
+1. Identify language, framework, build files, service entrypoints, configuration files, route registration, middleware, response helpers, error/status code definitions, models, repositories, external integrations, code generation tools, and framework-specific workflow artifacts such as `.api`, `proto`, schema, or model definitions.
 2. Use `rg`, `rg --files`, framework route commands, generated OpenAPI files, or existing docs when available. Prefer code evidence over naming guesses.
 3. Trace each public route from router/controller/handler to service/domain logic, data access, external calls, and response construction.
-4. Record uncertain items as "未在代码中确认" instead of inventing details.
+4. Infer the project's engineering workflow from code structure and toolchain: note whether the framework expects model-first, schema-first, contract-first, codegen-first, or hand-written development, and identify the real build order that a reimplementation should follow.
+5. Record uncertain items as "未在代码中确认" instead of inventing details.
 
 ## Service And Module Discovery
 
@@ -49,9 +50,10 @@ guide-docs/
 At the root of `guide-docs/`:
 
 1. Create `overview.md` from `references/project-overview-template.md`.
-2. Use this file only for project positioning, service/module map, and an engineering-grounded reimplementation route.
+2. Use this file only for project positioning, service/module map, technology stack identification, framework-specific development workflow guidance, and an engineering-grounded reimplementation route.
 3. Order the route by real engineering dependencies and core business value: foundational dependencies first, core modules early, dependent or peripheral modules later.
-4. Do not frame the route as copying code file-by-file.
+4. If the framework or toolchain implies a preferred implementation sequence, make that sequence explicit. Examples include model/schema definitions before generators, contract files before generated handlers, or initialization/bootstrap code before business logic wiring.
+5. Do not frame the route as copying code file-by-file.
 
 For each service:
 
@@ -78,6 +80,7 @@ Produce documents that answer:
 - Which interfaces expose the capability?
 - What is the core business flow?
 - Which data structures, storage tables, caches, queues, files, or external services are involved?
+- What tech stack, framework, and code generation tools shape the reimplementation path, and what development sequence do they imply?
 - What are the key technical design points worth preserving when reimplementing?
 - Which parts are confirmed by code, and which parts remain uncertain?
 - What is the recommended engineering order for reimplementing a similar project?

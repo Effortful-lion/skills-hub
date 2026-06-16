@@ -1,4 +1,0 @@
-interface:
-  display_name: "Yuni API Docs"
-  short_description: "从 Go 路由生成中文 Markdown 接口文档草稿"
-  default_prompt: "Use $yuni-api-docs to generate Markdown API docs from this Go project."
