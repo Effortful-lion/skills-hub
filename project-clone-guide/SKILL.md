@@ -19,7 +19,8 @@ Start by building a project map before writing documentation:
 2. Use `rg`, `rg --files`, framework route commands, generated OpenAPI files, or existing docs when available. Prefer code evidence over naming guesses.
 3. Trace each public route from router/controller/handler to service/domain logic, data access, external calls, and response construction.
 4. Infer the project's engineering workflow from code structure and toolchain: note whether the framework expects model-first, schema-first, contract-first, codegen-first, or hand-written development, and identify the real build order that a reimplementation should follow.
-5. Record uncertain items as "未在代码中确认" instead of inventing details.
+5. Prepare a concise file overview for the root project overview: list important directories and files with one short description of what each contains or why it matters to reimplementation.
+6. Record uncertain items as "未在代码中确认" instead of inventing details.
 
 ## Service And Module Discovery
 
@@ -50,10 +51,17 @@ guide-docs/
 At the root of `guide-docs/`:
 
 1. Create `overview.md` from `references/project-overview-template.md`.
-2. Use this file only for project positioning, service/module map, technology stack identification, framework-specific development workflow guidance, and an engineering-grounded reimplementation route.
+2. Use this file only for project positioning, directory/file overview, service/module map, technology stack identification, framework-specific development workflow guidance, and an engineering-grounded reimplementation route.
 3. Order the route by real engineering dependencies and core business value: foundational dependencies first, core modules early, dependent or peripheral modules later.
 4. If the framework or toolchain implies a preferred implementation sequence, make that sequence explicit. Examples include model/schema definitions before generators, contract files before generated handlers, or initialization/bootstrap code before business logic wiring.
 5. Do not frame the route as copying code file-by-file.
+
+For the root overview's file overview:
+
+- List important source directories and key files, not every generated or vendor file.
+- Add one concise factual description for each directory/file.
+- Explain why each item matters to understanding, reimplementing, or extending the project.
+- Mark inferred descriptions as "根据代码结构推断" when the purpose is not directly documented.
 
 For each service:
 

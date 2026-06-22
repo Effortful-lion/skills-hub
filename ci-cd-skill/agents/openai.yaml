@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目CI/CD配置"
+  short_description: "生成多平台 CI/CD 配置与流程文档助手"
+  default_prompt: "Use $ci-cd-skill to create CI/CD configuration files and docs for this project."

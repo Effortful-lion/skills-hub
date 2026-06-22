@@ -1,0 +1,4 @@
+interface:
+  display_name: "代码规范助手"
+  short_description: "按个人代码规范审查项目改动并优先输出可执行重构方案"
+  default_prompt: "Use $code-review-myself to review this project and provide a refactor plan before changing code."
