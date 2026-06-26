@@ -125,7 +125,7 @@ deploy_dev_config:
 
 ## Variables To Document
 
-List these in `docs/ci-cd-config.md` when used:
+List these in `deploy/ci-cd-config.md` when used:
 
 - `SSH_PRIVATE_KEY`: deploy key or build key, protected/masked.
 - `SSH_KNOWN_HOSTS`: output of `ssh-keyscan <host>`.

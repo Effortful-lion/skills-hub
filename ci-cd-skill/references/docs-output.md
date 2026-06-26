@@ -2,22 +2,28 @@
 
 Use this reference when creating the required Markdown docs.
 
-## Config Explanation: `docs/ci-cd-config.md`
+## Config Explanation: `deploy/ci-cd-config.md`
 
-Keep it short and tied to generated files.
+Keep it short, tied to generated files, and easy for a new owner to scan in one pass.
 
 Recommended sections:
 
 ```markdown
 # CI/CD 配置说明
 
-## 文件
+## 这套配置做什么
+
+用 2 到 4 句话说明构建、产物、部署目标和人工卡点。
+
+## 文件位置
 
 - `.gitlab-ci.yml`: ...
 - `.github/workflows/ci-cd.yml`: ...
 - `Jenkinsfile`: ...
+- `deploy/ci-cd-config.md`: 配置说明
+- `deploy/ci-cd-quick-start.md`: 上手文档
 
-## 流程
+## 流程总览
 
 1. 构建: ...
 2. 推送镜像/产物: ...
@@ -35,12 +41,12 @@ Recommended sections:
 | --- | --- | --- | --- |
 | dev | 手动/自动 | ... | ... |
 
-## 注意事项
+## 修改时注意
 
 - ...
 ```
 
-## Quick Start: `docs/ci-cd-quick-start.md`
+## Quick Start: `deploy/ci-cd-quick-start.md`
 
 Place this after the config explanation work. It should teach the user's operating route, not generic CI theory.
 
@@ -64,17 +70,12 @@ Recommended sections:
 
 ## 日常操作
 
-### 自动构建
-
-说明触发分支、产物命名、在哪里查看日志。
-
-### 手动部署
-
-说明点击哪个 job/workflow/stage，部署哪个环境，如何确认成功。
-
-### 配置更新
-
-说明只同步配置时走哪条 job。
+1. 自动构建
+   说明触发分支、产物命名、在哪里查看日志。
+2. 手动部署
+   说明点击哪个 job/workflow/stage，部署哪个环境，如何确认成功。
+3. 配置更新
+   说明只同步配置时走哪条 job。
 
 ## 回滚
 
@@ -94,3 +95,5 @@ Recommended sections:
 - Mention placeholders clearly, for example `<DEPLOY_HOST>` or `TODO: 替换为实际部署目录`.
 - Do not expose real secrets.
 - Keep docs actionable: every listed operation should say where to click or which command/job to run.
+- Prefer short sections and direct wording over full theory explanations.
+- Assume the reader is a new maintainer taking over the project, so explain the operating path before edge cases.

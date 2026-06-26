@@ -9,7 +9,7 @@ description: Use when creating, reviewing, or explaining CI/CD configuration for
 
 Use this skill to produce project-specific CI/CD configuration and the two documents that make it usable: a short config explanation and a final quick-start guide for the whole build/deploy route.
 
-Prefer the project's existing conventions. Do not replace working pipelines wholesale unless the user asks for a redesign.
+Prefer the project's existing conventions. Do not replace working pipelines wholesale unless the user asks for a redesign. Keep standard CI/CD config files in their native locations, and always place generated Markdown docs under the project-root `deploy/` directory. Create `deploy/` first if it does not exist.
 
 ## Workflow
 
@@ -21,14 +21,18 @@ Prefer the project's existing conventions. Do not replace working pipelines whol
    - Jenkins Pipeline: `references/jenkins.md`
    - Docker image build, registry, SSH deploy, compose deploy: `references/docker-image-and-deploy.md`
    - Required docs and quick-start structure: `references/docs-output.md`
-4. Generate the CI/CD config file with conservative defaults:
+4. Generate or update the CI/CD config file with conservative defaults:
    - Build and deploy are separate jobs/stages.
    - Production deploys are manual unless the user explicitly wants fully automatic release.
    - Secrets come from platform variables/secrets/credentials, never plaintext repo files.
    - Images use immutable tags such as commit SHA plus optional environment/latest tags.
    - Repeated shell blocks are factored only when the platform supports it clearly.
-5. Create or update a short config explanation document, normally `docs/ci-cd-config.md`.
-6. Create or update a final learning-oriented quick-start document, normally `docs/ci-cd-quick-start.md`, with a clear route for automated build and deployment.
+   - Do not relocate standard platform config files just to unify output paths.
+   - If the repository already has working CI/CD config, preserve its behavior and change only the minimum needed scope.
+5. Create or update a short config explanation document at `deploy/ci-cd-config.md`.
+6. Create or update a final learning-oriented quick-start document at `deploy/ci-cd-quick-start.md`, with a clear route for automated build and deployment.
+   - Write both docs in concise, newcomer-friendly Chinese unless the repo is clearly English-only.
+   - Keep the modules logically ordered so a new maintainer can follow setup, trigger, deploy, rollback, and troubleshooting without extra background reading.
 7. Validate syntax where tools are available, and at minimum run formatting/lint-safe checks such as YAML parse, `git diff --check`, or platform CLI validation if configured.
 
 ## Required Discovery
@@ -43,7 +47,7 @@ Gather these facts and reflect them in generated docs:
 - Deployment method: SSH plus docker compose, Kubernetes, rsync, cloud CLI, or custom script.
 - Required secrets: registry credentials, SSH key, known hosts, deploy host/user/path, cloud credentials, environment variables.
 
-If a fact is unknown, choose a safe placeholder and mark it clearly in the generated docs.
+If a fact is unknown, choose a safe placeholder and mark it clearly in the generated docs. Prefer placeholders that are easy for a new owner to search and replace.
 
 ## Output Contract
 
@@ -52,9 +56,9 @@ For each user request, produce only files that fit the selected platform:
 - GitLab: `.gitlab-ci.yml`
 - GitHub Actions: `.github/workflows/ci-cd.yml`
 - Jenkins: `Jenkinsfile`
-- Docs: `docs/ci-cd-config.md` and `docs/ci-cd-quick-start.md`
+- Docs: `deploy/ci-cd-config.md` and `deploy/ci-cd-quick-start.md`
 
-When editing an existing repo, keep unrelated pipeline behavior intact. Add comments only where future maintainers need to replace placeholders or understand a non-obvious deploy step.
+When editing an existing repo, keep unrelated pipeline behavior intact. Do not move or rename existing standard CI/CD config files unless the user explicitly requests that restructuring. Add comments only where future maintainers need to replace placeholders or understand a non-obvious deploy step.
 
 ## Review Checklist
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Deploy Review"
+  short_description: "Audit a solo project for a minimal launch."
+  default_prompt: "Use $deploy-review to audit this project for the simplest safe launch path."
